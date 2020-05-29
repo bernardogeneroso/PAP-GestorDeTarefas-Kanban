@@ -1,0 +1,12 @@
+ErrorDocument 400 /pap/index.php
+ErrorDocument 401 /pap/index.php
+ErrorDocument 403 /pap/index.php
+ErrorDocument 404 /pap/index.php
+ErrorDocument 500 /pap/index.php
+ErrorDocument 502 /pap/index.php
+ErrorDocument 504 /pap/index.php
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+

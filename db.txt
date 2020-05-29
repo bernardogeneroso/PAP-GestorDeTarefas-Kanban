@@ -1,0 +1,169 @@
+DATA BASE:
+
+CREATE TABLE boarduser (
+	id_boarduser INT AUTO_INCREMENT,
+    id_user INT,
+    nomeboard VARCHAR(20),
+    cor VARCHAR(12),
+    imagem VARCHAR(100),
+    PRIMARY KEY(id_boarduser),
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id)  ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardcategoria (
+	id INT AUTO_INCREMENT,
+    id_boarduser INT,
+    countBoard INT,
+    nomeCategoria VARCHAR(30),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE board (
+	id INT AUTO_INCREMENT,
+    id_board INT,
+    id_user INT,
+    id_categoria INT,
+    id_position INT,
+    nomeboard VARCHAR(30),
+    prioridade VARCHAR(7),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_board) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_categoria) REFERENCES boardcategoria(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE listatarefas (
+    id_listatarefas INT AUTO_INCREMENT,
+    id_user INT,
+    id_board INT,
+    id_boardtarefas INT,
+    position INT,
+    nomeTarefa VARCHAR(40),
+    dataCriacao VARCHAR(20),
+    prioridade VARCHAR(7),
+    descricao longtext,
+    atribudo VARCHAR(100),
+    PRIMARY KEY(id_listatarefas),
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_board) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_boardtarefas) REFERENCES board(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardusers (
+	id INT AUTO_INCREMENT,
+    id_board INT,
+    id_user INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_board) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE filesboards (
+	id INT AUTO_INCREMENT,
+    id_board INT,
+    id_boardgeral INT,
+    url_image VARCHAR(100),
+    filename_file VARCHAR(100),
+    tipo VARCHAR(6),
+    upload_time VARCHAR(20),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_board) REFERENCES board(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_boardgeral) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardperiodotrabalho (
+	id INT AUTO_INCREMENT,
+    id_board INT,
+    id_boarduser INT,
+    id_user INT,
+    atribuito VARCHAR(100),
+    de VARCHAR(20),
+    para VARCHAR(20),
+    tempoTotal VARCHAR(10),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_board) REFERENCES board(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE pagamentos (
+	id INT AUTO_INCREMENT,
+    id_board INT,
+    id_boarduser INT,
+    id_user INT,
+    dataCriacao VARCHAR(10),
+    metodoPagamento varchar(15),
+    tipoPagamento varchar(15),
+    valor FLOAT,
+    observacao varchar(255),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_board) REFERENCES board(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardprofileassociacao ( 
+    id INT AUTO_INCREMENT, 
+    id_board INT, 
+    id_boarduser INT, 
+    id_user INT, 
+    PRIMARY KEY(id), 
+    FOREIGN KEY(id_board) REFERENCES board(id) ON UPDATE CASCADE ON DELETE CASCADE, 
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE, 
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE 
+);
+
+CREATE TABLE boardpermissoes (
+	id INT AUTO_INCREMENT,
+    id_boarduser INT,
+    id_user INT,
+    permORder INT,
+    nomeperm VARCHAR(20),
+    boardop1 BOOLEAN,
+    boardop2 BOOLEAN,
+    boardop3 BOOLEAN,
+    boardop4 BOOLEAN,
+    boardop5 BOOLEAN,
+    boardop6 BOOLEAN,
+    boardop7 BOOLEAN,
+    boardop8 BOOLEAN,
+    boardop9 BOOLEAN,
+    boardop10 BOOLEAN,
+    boardop11 BOOLEAN,
+	boardop12 BOOLEAN,
+    boardop13 BOOLEAN,
+    boardop14 BOOLEAN,
+    boardop15 BOOLEAN,
+    boardop16 BOOLEAN,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardpermissoesusers (
+	id INT AUTO_INCREMENT,
+    id_boarduser INT,
+    id_boardpermissiao INT,
+    id_user INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_boardpermissiao) REFERENCES boardpermissoes(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE boardgestorsalario (
+	id INT AUTO_INCREMENT,
+    id_boarduser INT,
+    id_user INT,
+    tipo_trabalhador VARCHAR(16),
+    salario_mensal float(11),
+    salario_semanal float(11),
+    tempo_trabalho_dias INT(11),
+    tempo_trabalho_horas INT(11),
+    dias_semanais_trabalho INT(11),
+    receita_final float(11),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_boarduser) REFERENCES boarduser(id_boarduser) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(id_user) REFERENCES login_users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);

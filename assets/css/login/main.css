@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body  {
+  background-color: #f2f2f2; /*#F9FAFC;*/
+  font-family: 'Montserrat';
+}
+
+.login-pagina {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form .form-registar{
+  display: none;
+}
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  color: dimgray;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  /*border: 2px solid #0074E1;*/
+  border-radius: 6px;
+}
+.form-control-lg:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25)
+}
+.form input[type=button]:hover {
+  color: #495057 !important;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25)
+}
+.span_info {
+ text-align: left; 
+ display: block;
+ margin: -8px 0 8px;
+ font-size: 12px;
+}
+.form input[type=button] {
+  padding: 12px;
+  background: #0074E1;
+}
+.form .mensagem {
+  margin: 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .mensagem a {
+  color: #0074E1;
+  text-decoration: none;
+}
+.form h2{
+  color: #0074E1;
+}
+.form .div_espaco {
+  padding-bottom: 12px;
+}
+.span_awesome {
+  color: #0074E1;
+  text-align: left;
+  display: block;
+  margin: 14.5px 8px;
+  font-size: 14px;
+  position: absolute;
+}
+.span_awesome_password {
+  position: absolute;
+  display: block;
+  font-size: 12px;
+  left: 290px;
+  bottom: 175.5px;
+  color: #0074E1;
+}
+.input_password {
+  padding-right: 30px;
+}
+
+.input_password_top {
+  padding-right: 30px;
+  top: 233px;
+}
+
+.fa-eye-slash {
+  position: absolute;
+  bottom: 1px;
+}
+#darkmodecss {
+  margin-top: -127.5px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 1;
+}
+.darkmode {
+  background-color: rgb(50,54,57) !important;
+  background: rgb(50,54,57) !important;
+  color: white !important;
+}
+#darkmodeID {
+  color: #0074E1;
+  cursor: pointer;
+}
+
+.selectDesactive, h2, p, input, .fa, .fas {
+  user-select: none;
+}
+#login, #registar {
+  color: white;
+}
+#login:hover {
+  opacity: 0.9;
+}
+
+#registar:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 576px){
+  .modal-dialog {
+      max-width: 500px;
+      margin: 13.75rem auto !important;
+  }
+}
